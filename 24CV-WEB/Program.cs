@@ -1,5 +1,7 @@
 using _24CV_WEB.Repository;
 using _24CV_WEB.Services;
+using _24CV_WEB.Services.Contracts;
+using _24CV_WEB.Services.ContractServices;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +17,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IEmailService, EmailService>();
+builder.Services.AddTransient<ICurriculumService, CurriculumService>();
 
 var app = builder.Build();
 

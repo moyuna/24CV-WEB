@@ -40,6 +40,9 @@
                 <input type="file" asp-for="Foto" class="form-control" />
             </div>
             <div class="mb-3">
+                <input type="hidden" asp-for="RutaFoto" value="FakePath"  class="form-control" />
+            </div>
+            <div class="mb-3">
                 <label class="form-label">Dirección</label>
                 <textarea class="form-control" asp-for="Dirección" rows="4"></textarea>
             </div>

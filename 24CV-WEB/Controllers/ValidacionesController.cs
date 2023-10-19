@@ -1,10 +1,18 @@
 ﻿using _24CV_WEB.Models;
+using _24CV_WEB.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace _24CV_WEB.Controllers
 {
     public class ValidacionesController : Controller
     {
+        private readonly ICurriculumService _curriculumService;
+
+        public ValidacionesController(ICurriculumService curriculumService)
+        {
+            _curriculumService = curriculumService;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -14,10 +22,13 @@ namespace _24CV_WEB.Controllers
         public IActionResult EnviarInformacion(Curriculum model) {
 
             string mensaje = "";
+            //model.RutaFoto = "FakePath";
 
             if (ModelState.IsValid)
             {
-                mensaje = "Datos válidos";
+                var response = _curriculumService.Create(model);
+
+                mensaje = response.Message;
                 TempData["msj"] = mensaje;
                 return RedirectToAction("Index");
             }
