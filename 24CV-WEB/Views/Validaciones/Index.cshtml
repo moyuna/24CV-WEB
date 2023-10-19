@@ -1,0 +1,54 @@
+﻿@model _24CV_WEB.Models.Curriculum
+
+<div class="row">
+    @if (TempData["msj"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["msj"]
+        </div>
+    }
+
+
+    <div class="col-12">
+        <h2 class="text-center">Ejemplo de envio de información</h2>
+        <p class="text-center">Envío de formulario pasando datos de la vista al controlador.</p>
+    </div>
+    <div class="col-8">
+        <form asp-action="EnviarInformacion" asp-controller="Validaciones" method="post">
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" asp-for="Nombre" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Apellidos</label>
+                <input type="text" asp-for="Apellidos" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" asp-for="Email" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">CURP</label>
+                <input type="text" asp-for="CURP" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">% Inglés</label>
+                <input type="number" asp-for="PorcentajeIngles" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Foto</label>
+                <input type="file" asp-for="Foto" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Dirección</label>
+                <textarea class="form-control" asp-for="Dirección" rows="4"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Enviar</button>
+        </form>
+
+    </div>
+    <div class="col-4">
+        <h3 class="text-center">Enviar información al correo capturado</h3>
+        <p>Se enviará un correo con la información capturada.</p>
+    </div>
+</div>
