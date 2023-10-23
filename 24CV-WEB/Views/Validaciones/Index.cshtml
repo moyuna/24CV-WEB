@@ -14,7 +14,7 @@
         <p class="text-center">Envío de formulario pasando datos de la vista al controlador.</p>
     </div>
     <div class="col-8">
-        <form asp-action="EnviarInformacion" asp-controller="Validaciones" method="post">
+        <form asp-action="EnviarInformacion" asp-controller="Validaciones" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label class="form-label">Nombre</label>
                 <input type="text" asp-for="Nombre" class="form-control" />

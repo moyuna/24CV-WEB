@@ -11,6 +11,9 @@
                     <th>Apellidos</th>
                     <th>Fecha Nacimiendo</th>
                     <th>CURP</th>
+                    <th>Image Path</th>
+                    <th>Foto</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -21,6 +24,12 @@
                         <td>@item.Apellidos</td>
                         <td>@item.FechaNacimiento</td>
                         <td>@item.CURP</td>
+                        <td>@item.RutaFoto</td>
+                        <td>
+                            @if(!string.IsNullOrEmpty(item.RutaFoto)){
+                                <img src="~/Fotos/@item.RutaFoto" width="150" height="150">
+                            }
+                        </td>
                     </tr>
                 }
             </tbody>
