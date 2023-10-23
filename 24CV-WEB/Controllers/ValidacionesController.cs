@@ -41,5 +41,10 @@ namespace _24CV_WEB.Controllers
             }
 
         }
+
+        public IActionResult Lista()
+        {
+            return View(_curriculumService.GetAll());
+        }
     }
 }
