@@ -1,3 +1,4 @@
+using _24CV_WEB.Models;
 using _24CV_WEB.Repository;
 using _24CV_WEB.Services;
 using _24CV_WEB.Services.Contracts;
@@ -13,8 +14,18 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddIdentity<AspNetUser,AspNetRole>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+builder.Services.AddRazorPages();
+
+builder.Services.AddAuthentication("Cookies").AddCookie("Cookies",
+    options =>
+    {
+        options.LoginPath= "/Account/Login";
+        options.AccessDeniedPath = "/Account/AccesoDenegado";
+    });
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IEmailService, EmailService>();
 builder.Services.AddTransient<ICurriculumService, CurriculumService>();
@@ -38,6 +49,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
