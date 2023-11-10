@@ -1,11 +1,13 @@
 ﻿using _24CV_WEB.Models;
 using _24CV_WEB.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Net.Mail;
 
 namespace _24CV_WEB.Controllers
 {
+    [Authorize(Roles ="Administrador")]
     public class FormulariosController : Controller
     {
         private readonly IEmailService _emailService;

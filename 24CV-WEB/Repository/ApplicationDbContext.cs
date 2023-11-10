@@ -8,6 +8,8 @@ namespace _24CV_WEB.Repository
 	public class ApplicationDbContext : IdentityDbContext<IdentityUser>
 	{
 		public virtual DbSet<Curriculum> Curriculums { get;set; }	
+		public virtual DbSet<AspNetUser> AspNetUsers { get;set; }
+		public virtual DbSet<AspNetRole> AspNetRoles { get;set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) 
         {

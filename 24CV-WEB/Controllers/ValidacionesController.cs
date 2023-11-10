@@ -1,9 +1,11 @@
 ﻿using _24CV_WEB.Models;
 using _24CV_WEB.Services.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace _24CV_WEB.Controllers
 {
+    [Authorize(Roles ="Manager")]
     public class ValidacionesController : Controller
     {
         private readonly ICurriculumService _curriculumService;
@@ -13,7 +15,7 @@ namespace _24CV_WEB.Controllers
             _curriculumService = curriculumService;
         }
 
-        public IActionResult Index()
+		public IActionResult Index()
         {
             return View();
         }

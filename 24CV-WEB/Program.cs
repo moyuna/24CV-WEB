@@ -14,7 +14,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddIdentity<AspNetUser,AspNetRole>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddIdentity<AspNetUser,AspNetRole>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddRazorPages();
@@ -23,7 +23,8 @@ builder.Services.AddAuthentication("Cookies").AddCookie("Cookies",
     options =>
     {
         options.LoginPath= "/Account/Login";
-        options.AccessDeniedPath = "/Account/AccesoDenegado";
+        options.AccessDeniedPath = "/Account/AccessDenied";
+     
     });
 
 builder.Services.AddControllersWithViews();
