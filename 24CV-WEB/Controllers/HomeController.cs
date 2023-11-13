@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace _24CV_WEB.Controllers
 {
-    [Authorize(Roles ="Administrador,Manager")]
+    //[Authorize(Roles ="Administrador,Manager")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

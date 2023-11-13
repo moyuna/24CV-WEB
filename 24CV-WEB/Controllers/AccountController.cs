@@ -1,6 +1,7 @@
 ﻿using _24CV_WEB.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,7 +39,7 @@ namespace _24CV_WEB.Controllers
 
 			if (result != null)
 			{
-				var resultSignIn = await _signInManager.PasswordSignInAsync(user, pass, false, false);
+				var resultSignIn = await _signInManager.PasswordSignInAsync(result, pass, false, false);
 
 				if (resultSignIn.Succeeded)
 				{
@@ -57,7 +58,31 @@ namespace _24CV_WEB.Controllers
 			return RedirectToAction("Login","Account");
 		}
 
-		public bool SeedUser()
+		public async Task LoginGoogle()
+		{
+			await HttpContext.ChallengeAsync(GoogleDefaults.AuthenticationScheme, new AuthenticationProperties()
+			{
+				RedirectUri = Url.Action("GoogleResponse")
+			});
+		}
+
+		public async Task<IActionResult> GoogleResponse()
+		{
+			var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+			if (result.Succeeded)
+			{
+				return RedirectToAction("Index","Home");
+			}
+			else
+			{
+				return View("Login");
+			}
+		}
+
+
+
+        public bool SeedUser()
 		{
 			AspNetRole roleAdmin = new AspNetRole() { Name = "Administrador" };
 			AspNetRole roleManager = new AspNetRole() { Name = "Manager" };

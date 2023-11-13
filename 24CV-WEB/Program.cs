@@ -3,6 +3,7 @@ using _24CV_WEB.Repository;
 using _24CV_WEB.Services;
 using _24CV_WEB.Services.Contracts;
 using _24CV_WEB.Services.ContractServices;
+using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,6 +26,10 @@ builder.Services.AddAuthentication("Cookies").AddCookie("Cookies",
         options.LoginPath= "/Account/Login";
         options.AccessDeniedPath = "/Account/AccessDenied";
      
+    }).AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
+    {
+        options.ClientId = "373830147324-lj621nvljt8ds2sc7sl82289nfnasbe5.apps.googleusercontent.com";
+        options.ClientSecret = "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";
     });
 
 builder.Services.AddControllersWithViews();
